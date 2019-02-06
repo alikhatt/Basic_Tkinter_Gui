@@ -4,6 +4,7 @@ import math
 
 def calculate(*args):
     try:
+    	
         value_fsr = float(fsr_entry.get())
         val_accr = float(accr_entry.get())
         val_resol = float(resol_entry.get())
