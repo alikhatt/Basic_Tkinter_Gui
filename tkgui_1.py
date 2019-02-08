@@ -20,9 +20,6 @@ def calculate(*args):
         val_inp9 = float(inp_9_entry.get())
         val_inp10 = float(inp_10_entry.get())
         decidig=int(abs(math.floor(math.log10(abs(val_resol)))))
-        #summ = val_inp10 + val_inp9 + val_inp8 + val_inp7 + val_inp6 + val_inp5 + val_inp4
-        #summ = summ + val_inp3 + val_inp2 + val_inp1
-        #mymean = summ / val_ninp
         err1 = (val_accr / 100) * value_fsr
         err2 = val_resol / 2
         alii = [val_inp1, val_inp2, val_inp3, val_inp4, val_inp5, val_inp6, val_inp7, val_inp8, val_inp9, val_inp10]
@@ -45,46 +42,9 @@ def calculate(*args):
         fimea=mymean-val_zerr
         fimea=round(fimea,decidig);
         resul.set(fimea)
+        unci.set(esu)
     except ValueError:
         pass
-
-#def inpy(*args):
-#	try:
-#		inps = float(noinp.get())
-#		numinps.set(inps)
-#		global ali
-#		ali =[0 for i in range(int(inps))]
-#		for ii in range(int(inps)):
-#			inp_lab = "Input " + str(ii+1)
- #			ttk.Label(mainframe, text=inp_lab).grid(column=1,row=(15+ii), sticky=W)
- #			entry_level = "entry_level" + str(ii)
- #			#exec(ent% = StringVar())
-#			entry_level = ttk.Entry(mainframe, width=7)
-#			entry_level.bind("<Return>",focus1)
-#			entry_level.grid(row=(ii+15), column=2, sticky=(W,E))
-#
-#	except ValueError:
-#		pass
-
-
-#global ali
-#ali = []
-#global myal
-#myal = 0
-#def focus1(event):
-	#global myal
-#	global myal
-#	noinp_entry.focus_set()
-#	ali[myal] = float(noinp_entry.get())
-#	myal = myal +1;
-#	print ali
-
-
-#def create_entry_widget(self, x):
-#    new_widget = Entry(self.root)
-#    new_widget.pack()
-#    new_widget.insert(0, x)
-#    return new_widget
     
 root = Tk()
 root.title("Uncertainty Measurement")
@@ -94,8 +54,8 @@ mainframe.grid(column=0, row=0, sticky=(N, W, E, S))
 root.columnconfigure(0, weight=1)
 root.rowconfigure(0, weight=1)
 
-#feet = StringVar()
 resul = StringVar()
+unci = StringVar()
 fsr = StringVar()
 accr = StringVar()
 resol = StringVar()
@@ -112,11 +72,6 @@ inp_7 = StringVar()
 inp_8 = StringVar()
 inp_9 = StringVar()
 inp_10 = StringVar()
-#sv = StringVar()
-#inp = 
-ali = []
-#feet_entry = ttk.Entry(mainframe, width=7, textvariable=feet)
-#feet_entry.grid(column=2, row=1, sticky=(W, E))
 
 fsr_entry = ttk.Entry(mainframe, width=7, textvariable=fsr)
 fsr_entry.grid(column=2, row=2, sticky=(W,E))
@@ -178,34 +133,8 @@ inp_10_entry = ttk.Entry(mainframe, width=7, textvariable=inp_10)
 inp_10_entry.grid(column=2, row=16, sticky=(W,E))
 inp_10_entry.insert(0,"0")
 
-
-#noinp_1 = 0
-#inps = float(noinp.get())
-#numinps.set(inps)
-#ali =[0 for i in range(int(inps))]
-#for ii in range(int(inps)):
-#	inp_lab = "Input " + str(ii+1)
-# 	ttk.Label(mainframe, text=inp_lab).grid(column=1,row=(15+ii), sticky=W)
- #	entry_level = "entry_level" + str(ii)
- 	#exec(ent% = StringVar())
-#	entry_level = ttk.Entry(mainframe, width=7, textvariable=ali[ii])
-#	entry_level.grid(row=(ii+15), column=2, sticky=(W,E))
-#for jj in range(int(noinp_1)):
-# 	inp_lab = "Input " + str(jj+1)
-#	ttk.Label(mainframe, text=inp_lab).grid(column=1,row=(7+jj), sticky=W)
-
-#root.entry_widgets = [root.create_entry_widget(x) for x in range(3)]
-
-#numinps1 = noinp_entry.get()
-#numinpf = float(numinps)
-#print numinpf
-#ttk.Label(mainframe, textvariable=numinps).grid(column=2, row=(9+noinp_1), sticky=(W, E))
-#ttk.Button(mainframe, text="Inputs", command=inpy).grid(column=3, row=6, sticky=W)
-
-#ttk.Label(mainframe, textvariable=meters).grid(column=2, row=(8+noinp_1), sticky=(W, E))
 ttk.Button(mainframe, text="Calculate", command=calculate).grid(column=3, row=17, sticky=W)
 
-#ttk.Label(mainframe, text="feet").grid(column=1, row=1, sticky=W)
 ttk.Label(mainframe, text="Full Scale Reading").grid(column=1, row=2, sticky=W)
 ttk.Label(mainframe, text="Accuracy").grid(column=1, row=3, sticky=W)
 ttk.Label(mainframe, text="Resolution").grid(column=1, row=4, sticky=W)
@@ -221,15 +150,17 @@ ttk.Label(mainframe, text="Input 7").grid(column=1, row=13, sticky=W)
 ttk.Label(mainframe, text="Input 8").grid(column=1, row=14, sticky=W)
 ttk.Label(mainframe, text="Input 9").grid(column=1, row=15, sticky=W)
 ttk.Label(mainframe, text="Input 10").grid(column=1, row=16, sticky=W)
-
-
 ttk.Label(mainframe, text="Result is").grid(column=1, row=(18), sticky=E)
 ttk.Label(mainframe, textvariable=resul).grid(column=2,row=18, sticky=(W,E))
 ttk.Label(mainframe, text="units").grid(column=3, row=(18), sticky=W)
+ttk.Label(mainframe, text= u"\u00B1").grid(column=1, row=19, sticky=E)
+ttk.Label(mainframe, textvariable=unci).grid(column=2, row=19, sticky=(W,E))
+ttk.Label(mainframe, text="with approximately").grid(column=1,row=20,sticky=E)
+ttk.Label(mainframe, text="95 percent Level").grid(column=2,row=20,sticky=(W,E))
+ttk.Label(mainframe, text="of Confidence").grid(column=3,row=20,sticky=W)
 
 for child in mainframe.winfo_children(): child.grid_configure(padx=5, pady=5)
 
-#feet_entry.focus()
 fsr_entry.focus()
 accr_entry.focus()
 resol_entry.focus()
@@ -247,7 +178,5 @@ inp_9_entry.focus()
 inp_10_entry.focus()
 
 root.bind('<Return>', calculate)
-#root.bind('<Return>', inpy)
-
 
 root.mainloop()
